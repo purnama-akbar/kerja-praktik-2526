@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pengumuman Seminar Kerja Praktik</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0f1f3d;
+    --gold: #c8973a;
+    --gold-light: #e8b96a;
+    --cream: #f5f0e8;
+    --cream-dark: #ede5d4;
+    --text: #1a1a2e;
+    --muted: #6b6b7a;
+    --white: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    min-height: 100vh;
+    padding: clamp(12px, 4vw, 40px) clamp(8px, 3vw, 20px);
+  }
+
+  .page {
+    max-width: 760px;
+    margin: 0 auto;
+    background: var(--white);
+    border: 1px solid var(--cream-dark);
+    box-shadow: 0 8px 48px rgba(15,31,61,0.10);
+    position: relative;
+    overflow: hidden;
+    animation: fadeUp 0.7s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .page::before, .page::after {
+    content: '';
+    position: absolute;
+    width: 60px; height: 60px;
+    border-color: var(--gold);
+    border-style: solid;
+    opacity: 0.30;
+  }
+  .page::before { top: 8px; left: 8px; border-width: 2px 0 0 2px; }
+  .page::after  { bottom: 8px; right: 8px; border-width: 0 2px 2px 0; }
+  @media (max-width: 400px) {
+    .page::before, .page::after { display: none; }
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--navy);
+    padding: clamp(20px, 5vw, 36px) clamp(16px, 6vw, 48px) clamp(16px, 4vw, 28px);
+    position: relative;
+    overflow: hidden;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), var(--gold), transparent);
+  }
+
+  .kop {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(200,151,58,0.25);
+  }
+  .kop-icon {
+    width: clamp(36px, 9vw, 48px);
+    height: clamp(36px, 9vw, 48px);
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: clamp(16px, 4vw, 22px);
+    flex-shrink: 0;
+  }
+  .kop-text { color: var(--cream); }
+  .kop-text .dept {
+    font-size: clamp(9px, 2.2vw, 11px);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    font-weight: 500;
+    margin-bottom: 3px;
+  }
+  .kop-text .univ {
+    font-size: clamp(11px, 2.8vw, 13px);
+    font-weight: 300;
+    opacity: 0.8;
+  }
+
+  .header-badge {
+    display: inline-block;
+    background: rgba(200,151,58,0.15);
+    border: 1px solid rgba(200,151,58,0.4);
+    color: var(--gold-light);
+    font-size: clamp(8px, 2vw, 10px);
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+
+  .header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(20px, 6vw, 30px);
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .header h1 em { font-style: italic; color: var(--gold-light); }
+
+  .header .subtitle {
+    font-size: clamp(11px, 2.6vw, 13px);
+    color: rgba(245,240,232,0.65);
+    font-weight: 300;
+    letter-spacing: 0.3px;
+    line-height: 1.4;
+  }
+
+  /* ── BODY ── */
+  .body {
+    padding: clamp(20px, 5vw, 36px) clamp(16px, 6vw, 48px);
+  }
+
+  .section-label {
+    font-size: clamp(9px, 2vw, 10px);
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--cream-dark), transparent);
+  }
+
+  /* ── TIMELINE ── */
+  .timeline {
+    position: relative;
+    margin-bottom: 28px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: clamp(16px, 4.5vw, 22px);
+    top: 8px; bottom: 8px;
+    width: 1px;
+    background: linear-gradient(180deg, var(--gold) 0%, var(--cream-dark) 100%);
+  }
+
+  .tl-item {
+    display: flex;
+    gap: clamp(12px, 3vw, 20px);
+    margin-bottom: clamp(12px, 3vw, 20px);
+    animation: fadeUp 0.5s ease both;
+  }
+  .tl-item:nth-child(1) { animation-delay: 0.10s; }
+  .tl-item:nth-child(2) { animation-delay: 0.20s; }
+  .tl-item:nth-child(3) { animation-delay: 0.30s; }
+  .tl-item:nth-child(4) { animation-delay: 0.40s; }
+
+  .tl-dot {
+    width: clamp(32px, 8vw, 44px);
+    height: clamp(32px, 8vw, 44px);
+    border-radius: 50%;
+    background: var(--navy);
+    border: 2px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-size: clamp(13px, 3.5vw, 18px);
+    flex-shrink: 0;
+    position: relative; z-index: 1;
+    transition: transform 0.2s ease;
+  }
+  .tl-item:hover .tl-dot { transform: scale(1.08); }
+
+  .tl-content {
+    background: var(--cream);
+    border: 1px solid var(--cream-dark);
+    border-left: 3px solid var(--gold);
+    padding: clamp(10px, 2.5vw, 14px) clamp(12px, 3vw, 18px);
+    flex: 1;
+    transition: box-shadow 0.2s ease;
+  }
+  .tl-item:hover .tl-content { box-shadow: 0 4px 16px rgba(15,31,61,0.08); }
+
+  .tl-title {
+    font-weight: 600;
+    font-size: clamp(13px, 3vw, 14px);
+    color: var(--navy);
+    margin-bottom: 3px;
+  }
+  .tl-date {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(14px, 3.8vw, 17px);
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .tl-note {
+    font-size: clamp(11px, 2.5vw, 12px);
+    color: var(--muted);
+    font-style: italic;
+    line-height: 1.4;
+  }
+
+  /* Divider */
+  .divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--cream-dark), transparent);
+    margin: clamp(18px, 4vw, 28px) 0;
+  }
+
+  /* ── INFO GRID ── */
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(10px, 2.5vw, 16px);
+    margin-bottom: clamp(18px, 4vw, 28px);
+  }
+  @media (max-width: 480px) {
+    .info-grid { grid-template-columns: 1fr; }
+  }
+
+  .info-box {
+    background: var(--cream);
+    border: 1px solid var(--cream-dark);
+    padding: clamp(12px, 3vw, 16px) clamp(12px, 3vw, 18px);
+    border-top: 3px solid var(--navy);
+    animation: fadeUp 0.5s ease 0.5s both;
+  }
+  .info-box .ib-icon { font-size: clamp(18px, 4.5vw, 22px); margin-bottom: 6px; }
+  .info-box .ib-title {
+    font-size: clamp(9px, 2vw, 10px);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+  .info-box .ib-content {
+    font-size: clamp(12.5px, 2.8vw, 13.5px);
+    color: var(--text);
+    line-height: 1.55;
+  }
+  .info-box .ib-content strong { color: var(--navy); font-weight: 600; }
+
+  /* ── WARNING BOX ── */
+  .warn-box {
+    background: #fff8ee;
+    border: 1px solid #f0d09a;
+    border-left: 4px solid var(--gold);
+    padding: clamp(12px, 3vw, 16px) clamp(14px, 3.5vw, 20px);
+    margin-bottom: clamp(18px, 4vw, 22px);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    animation: fadeUp 0.5s ease 0.6s both;
+  }
+  .warn-icon { font-size: clamp(18px, 4.5vw, 22px); flex-shrink: 0; margin-top: 1px; }
+  .warn-text { font-size: clamp(12px, 2.8vw, 13px); color: #5a4010; line-height: 1.6; }
+  .warn-text strong {
+    color: #7a5a10;
+    display: block;
+    margin-bottom: 3px;
+    font-size: clamp(9px, 2vw, 11px);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* ── FORMAT BERKAS ── */
+  .format-box {
+    background: var(--navy);
+    color: var(--cream);
+    padding: clamp(14px, 3.5vw, 18px) clamp(14px, 4vw, 22px);
+    margin-bottom: clamp(20px, 4vw, 28px);
+    position: relative;
+    overflow: hidden;
+    animation: fadeUp 0.5s ease 0.7s both;
+  }
+  .format-box::before {
+    content: '{ }';
+    position: absolute;
+    right: 12px; top: 50%;
+    transform: translateY(-50%);
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(28px, 8vw, 48px);
+    color: rgba(200,151,58,0.10);
+    pointer-events: none;
+  }
+  .format-box .fb-label {
+    font-size: clamp(9px, 2vw, 10px);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .format-box .fb-format {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(16px, 4.5vw, 20px);
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .format-box .fb-example {
+    font-size: clamp(11px, 2.5vw, 12px);
+    color: rgba(245,240,232,0.6);
+  }
+  .format-box .fb-example span {
+    background: rgba(200,151,58,0.2);
+    border: 1px solid rgba(200,151,58,0.4);
+    color: var(--gold-light);
+    padding: 3px 10px;
+    font-size: clamp(11.5px, 2.8vw, 13px);
+    letter-spacing: 0.5px;
+    word-break: break-all;
+    display: inline-block;
+    margin-top: 4px;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--cream);
+    border-top: 1px solid var(--cream-dark);
+    padding: clamp(14px, 3vw, 18px) clamp(16px, 6vw, 48px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  @media (max-width: 480px) {
+    .footer { flex-direction: column; align-items: flex-start; }
+    .footer-stamp { align-self: flex-end; }
+  }
+
+  .footer-note { font-size: clamp(11px, 2.5vw, 12px); color: var(--muted); line-height: 1.55; flex: 1; }
+  .footer-note strong { color: var(--navy); }
+  .footer-stamp {
+    background: var(--navy);
+    color: var(--gold-light);
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(10px, 2.5vw, 11px);
+    padding: 8px 14px;
+    letter-spacing: 1px;
+    text-align: center;
+    flex-shrink: 0;
+    white-space: nowrap;
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="kop">
+      <div class="kop-icon">🎓</div>
+      <div class="kop-text">
+        <div class="dept">Program Studi · Kerja Praktik</div>
+        <div class="univ">Koordinator Seminar Kerja Praktik</div>
+      </div>
+    </div>
+    <div class="header-badge">Pengumuman Resmi</div>
+    <h1>Seminar <em>Kerja Praktik</em></h1>
+    <div class="subtitle">Periode Mei 2026 — Informasi Jadwal &amp; Ketentuan Pendaftaran</div>
+  </div>
+
+  <!-- BODY -->
+  <div class="body">
+
+    <div class="section-label">Jadwal Pelaksanaan</div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot">📋</div>
+        <div class="tl-content">
+          <div class="tl-title">Pendaftaran</div>
+          <div class="tl-date">4 – 6 Mei 2026</div>
+          <div class="tl-note">Daftar lebih awal untuk mendapatkan tagihan pembayaran lebih cepat</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot">💳</div>
+        <div class="tl-content">
+          <div class="tl-title">Penagihan &amp; Pembayaran</div>
+          <div class="tl-date">5 – 7 Mei 2026</div>
+          <div class="tl-note">Selesaikan pembayaran sesuai tagihan yang diterima</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot">✅</div>
+        <div class="tl-content">
+          <div class="tl-title">Verifikasi</div>
+          <div class="tl-date">8 Mei 2026</div>
+          <div class="tl-note">Pengecekan kelengkapan berkas dan status pembayaran</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot">🎤</div>
+        <div class="tl-content">
+          <div class="tl-title">Pelaksanaan Seminar</div>
+          <div class="tl-date">11 – 29 Mei 2026</div>
+          <div class="tl-note">Jadwal seminar akan dikonfirmasi setelah verifikasi</div>
+        </div>
+      </div>
+
+    </div>
+
+    <hr class="divider">
+
+    <div class="section-label">Ketentuan Pendaftaran</div>
+    <div class="info-grid">
+      <div class="info-box">
+        <div class="ib-icon">📊</div>
+        <div class="ib-title">Media Pendaftaran</div>
+        <div class="ib-content">
+          Melalui <strong>spreadsheet</strong> yang telah dibagikan. Isi <strong>semua informasi</strong> yang diperlukan secara lengkap.
+        </div>
+      </div>
+      <div class="info-box">
+        <div class="ib-icon">⚠️</div>
+        <div class="ib-title">Syarat Dianggap Mendaftar</div>
+        <div class="ib-content">
+          Formulir diisi <strong>secara lengkap</strong>. Pengisian tidak lengkap dianggap <strong>tidak mendaftar</strong>.
+        </div>
+      </div>
+      <div class="info-box">
+        <div class="ib-icon">📁</div>
+        <div class="ib-title">Upload Berkas</div>
+        <div class="ib-content">
+          Melalui <strong>Google Classroom</strong> sesuai nama <strong>dosen pembimbing</strong> masing-masing.
+        </div>
+      </div>
+      <div class="info-box">
+        <div class="ib-icon">📅</div>
+        <div class="ib-title">Batas Upload Berkas</div>
+        <div class="ib-content">
+          Maksimal <strong>6 Mei 2026</strong>. Berkas yang diunggah melewati tanggal ini tidak akan diproses.
+        </div>
+      </div>
+    </div>
+
+    <div class="warn-box">
+      <div class="warn-icon">💡</div>
+      <div class="warn-text">
+        <strong>Perhatian Penting</strong>
+        Pendaftaran dibuka mulai tanggal <strong>4 Mei</strong> agar mahasiswa dapat menerima tagihan pembayaran lebih awal. Pastikan mendaftar segera agar proses pembayaran tidak melewati batas waktu tanggal <strong>7 Mei 2026</strong>.
+      </div>
+    </div>
+
+    <div class="section-label">Format Penamaan Berkas</div>
+    <div class="format-box">
+      <div class="fb-label">Ketentuan Nama File yang Diupload</div>
+      <div class="fb-format">NIM_Nama Berkas</div>
+      <div class="fb-example">
+        Contoh: <span>13611091_Laporan KP</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-note">
+      Informasi lebih lanjut dapat ditanyakan kepada koordinator.<br>
+      <strong>Pastikan semua ketentuan terpenuhi sebelum batas waktu.</strong>
+    </div>
+    <div class="footer-stamp">Mei 2026<br>Seminar KP</div>
+  </div>
+
+</div>
+</body>
+</html>
