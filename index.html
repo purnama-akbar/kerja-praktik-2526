@@ -105,12 +105,14 @@
     .alert { background: #fff8ee; border: 1px solid #f0d09a; border-left: 5px solid var(--gold); padding: 18px 22px; margin-bottom: 28px; display: flex; gap: 14px; align-items: flex-start; }
     .alert-icon { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
     .alert-body { font-size: 13.5px; color: #5a4010; line-height: 1.65; }
-    .alert-body strong { display: block; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: #8a6510; margin-bottom: 5px; }
+    .alert-body strong { 
+      /* display: block;  */
+      font-size: 15px; letter-spacing: 1.5px; text-transform: uppercase; color: #d80c0c; margin-bottom: 5px; }
 
     /* ── FORMAT STRIP ── */
     .format-strip { background: var(--navy); padding: 22px 28px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
-    .fs-left .fs-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-light); font-weight: 600; margin-bottom: 6px; }
-    .fs-left .fs-format { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--white); }
+    .fs-left .fs-label { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-light); font-weight: 600; margin-bottom: 6px; }
+    .fs-left .fs-format { font-family: 'DM Sans', serif; font-size: 15px; color: var(--white); }
     .fs-right { background: rgba(200,151,58,0.15); border: 1px solid rgba(200,151,58,0.35); color: var(--gold-light); padding: 8px 18px; font-size: 14px; letter-spacing: 0.5px; white-space: nowrap; font-family: 'DM Sans', monospace; }
 
     /* ══════════════════════════════════════
@@ -338,7 +340,7 @@
         <div class="ic-icon">📊</div>
         <div class="ic-title">Media Pendaftaran</div>
         <div class="ic-content">
-          Melalui <strong><a href="https://docs.google.com/spreadsheets/d/1RJ8mvyjHupkNS-PEm9-pXnjtVTN35p6CBVMpGT56bCc/edit?usp=sharing" target="_blank">spreadsheet pendaftaran</a></strong> yang telah dibagikan. Isi <strong style="color:red">semua informasi</strong> yang diperlukan secara lengkap.
+          Melalui <strong><a href="https://docs.google.com/spreadsheets/d/1RJ8mvyjHupkNS-PEm9-pXnjtVTN35p6CBVMpGT56bCc/edit?usp=sharing" target="_blank">spreadsheet</a></strong> pendaftaran yang telah dibagikan. Isi <strong style="color:red">semua informasi</strong> yang diperlukan secara lengkap.
         </div>
       </div>
       <div class="info-card">
@@ -368,7 +370,7 @@
       <div class="alert-icon">💡</div>
       <div class="alert-body">
         <strong>Perhatian Penting</strong>
-        Pendaftaran dibuka mulai tanggal <strong>4 Mei</strong> agar mahasiswa dapat menerima tagihan pembayaran lebih awal. Pastikan mendaftar segera agar proses pembayaran tidak melewati batas waktu tanggal <strong>7 Mei 2026</strong>.
+        <br> Pendaftaran dibuka mulai tanggal <strong>4 Mei 2026</strong> agar mahasiswa dapat menerima tagihan pembayaran lebih awal. Pastikan mendaftar segera agar proses pembayaran tidak melewati batas waktu tanggal <strong>7 Mei 2026</strong>.
       </div>
     </div>
 
@@ -376,9 +378,10 @@
     <div class="format-strip">
       <div class="fs-left">
         <div class="fs-label">Ketentuan Nama File yang Diupload</div>
-        <div class="fs-format">NIM_Nama Berkas</div>
+         <!-- <div style="color: #d1adad; font-size: 13px;">Mengikuti format penamaan sebagai berikut:</div>  -->
+        <div class="fs-format"><br>Mengikuti format: NIM_Nama Berkas</div>
       </div>
-      <div class="fs-right">13611091_Laporan KP</div>
+      <div class="fs-right">Contoh: 13611091_Laporan KP</div>
     </div>
   </div>
 
@@ -551,14 +554,14 @@ const CONFIG = {
 const BERKAS = {
   laporan: [
     {
-      nama: 'Template Laporan KP',
+      nama: 'Template Laporan KP-Reguler',
       desc: 'Template resmi penulisan laporan Kerja Praktik sesuai format Program Studi Statistika UII.',
       ikon: '📄', kategori: 'Laporan', tipe: 'DOCX',
-      url: 'berkas/laporan/template-laporan-kp.docx',
+      url: 'https://docs.google.com/document/d/1JPYLeb6oy4vvaf9xz_8iAAH-qd3gbmQl/edit?usp=drive_link&ouid=100785022100769584012&rtpof=true&sd=true',
     },
     {
-      nama: 'Panduan Penulisan Laporan KP',
-      desc: 'Buku panduan lengkap tata cara penulisan laporan KP beserta ketentuan format.',
+      nama: 'Intership Report Template-IP',
+      desc: 'Template resmi penulisan laporan Kerja Praktik sesuai format Program Studi Statistika UII.',
       ikon: '📖', kategori: 'Laporan', tipe: 'PDF',
       url: 'berkas/laporan/panduan-penulisan-laporan-kp.pdf',
     },
