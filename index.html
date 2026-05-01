@@ -1,500 +1,955 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pengumuman Seminar Kerja Praktik</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --navy: #0f1f3d;
-    --gold: #c8973a;
-    --gold-light: #e8b96a;
-    --cream: #f5f0e8;
-    --cream-dark: #ede5d4;
-    --text: #1a1a2e;
-    --muted: #6b6b7a;
-    --white: #ffffff;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seminar Kerja Praktik — Mei 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0f1f3d;
+      --navy-mid: #162a50;
+      --gold: #c8973a;
+      --gold-light: #e8b96a;
+      --gold-dim: rgba(200, 151, 58, 0.15);
+      --cream: #f5f0e8;
+      --cream-dark: #e8dfc8;
+      --text: #1a1a2e;
+      --muted: #6b6b7a;
+      --white: #ffffff;
+      --green: #2d7a4f;
+      --green-light: #e8f5ee;
+    }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; font-family: 'DM Sans', sans-serif; background: var(--navy); color: var(--text); }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--cream);
-    color: var(--text);
-    min-height: 100vh;
-    padding: clamp(12px, 4vw, 40px) clamp(8px, 3vw, 20px);
-  }
+    /* ── HEADER ── */
+    .site-header { background: var(--navy); padding: 28px 5vw 0; position: relative; }
+    .site-header::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent 0%, var(--gold) 30%, var(--gold-light) 50%, var(--gold) 70%, transparent 100%);
+    }
+    .header-top { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 28px; flex-wrap: wrap; }
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand-icon {
+      width: 52px; height: 52px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      border-radius: 14px; display: flex; align-items: center; justify-content: center;
+      font-size: 24px; flex-shrink: 0; box-shadow: 0 4px 16px rgba(200,151,58,0.3);
+    }
+    .brand-text .prodi { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold-light); font-weight: 500; margin-bottom: 3px; }
+    .brand-text h1 { font-family: 'DM Serif Display', serif; font-size: clamp(18px, 3.5vw, 26px); color: var(--white); line-height: 1.1; }
+    .brand-text h1 em { font-style: italic; color: var(--gold-light); }
+    .header-meta { text-align: right; }
+    .hbadge { display: inline-block; background: var(--gold-dim); border: 1px solid rgba(200,151,58,0.35); color: var(--gold-light); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; padding: 4px 12px; margin-bottom: 6px; font-weight: 500; }
+    .header-meta .period { font-size: 12px; color: rgba(245,240,232,0.55); font-weight: 300; }
+    @media (max-width: 560px) { .header-meta { display: none; } }
 
-  .page {
-    max-width: 760px;
-    margin: 0 auto;
-    background: var(--white);
-    border: 1px solid var(--cream-dark);
-    box-shadow: 0 8px 48px rgba(15,31,61,0.10);
-    position: relative;
-    overflow: hidden;
-    animation: fadeUp 0.7s ease both;
-  }
+    /* ── TABS ── */
+    .tab-nav { display: flex; gap: 0; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .tab-nav::-webkit-scrollbar { display: none; }
+    .tab-btn {
+      background: transparent; border: none;
+      color: rgba(245,240,232,0.5);
+      font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.3px;
+      padding: 14px 22px; cursor: pointer; position: relative;
+      transition: color 0.2s ease; white-space: nowrap; flex-shrink: 0;
+    }
+    .tab-btn::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--gold); transform: scaleX(0); transition: transform 0.25s ease; }
+    .tab-btn:hover { color: rgba(245,240,232,0.85); }
+    .tab-btn.active { color: var(--white); }
+    .tab-btn.active::after { transform: scaleX(1); }
+    .tab-icon { margin-right: 6px; }
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
+    /* ── MAIN ── */
+    .main { background: var(--cream); min-height: calc(100vh - 160px); padding: clamp(24px,4vw,48px) clamp(16px,5vw,56px); }
+    .tab-panel { display: none; animation: fadeIn 0.3s ease both; }
+    .tab-panel.active { display: block; }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
 
-  .page::before, .page::after {
-    content: '';
-    position: absolute;
-    width: 60px; height: 60px;
-    border-color: var(--gold);
-    border-style: solid;
-    opacity: 0.30;
-  }
-  .page::before { top: 8px; left: 8px; border-width: 2px 0 0 2px; }
-  .page::after  { bottom: 8px; right: 8px; border-width: 0 2px 2px 0; }
-  @media (max-width: 400px) {
-    .page::before, .page::after { display: none; }
-  }
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(10,48,102,0.7); font-weight: 700; margin-bottom: 20px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--cream-dark), transparent); }
 
-  /* ── HEADER ── */
-  .header {
-    background: var(--navy);
-    padding: clamp(20px, 5vw, 36px) clamp(16px, 6vw, 48px) clamp(16px, 4vw, 28px);
-    position: relative;
-    overflow: hidden;
-  }
-  .header::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), var(--gold), transparent);
-  }
+    /* ── TIMELINE H ── */
+    .timeline-h { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; margin-bottom: 48px; position: relative; }
+    .timeline-h::before { content: ''; position: absolute; top: 28px; left: 12.5%; right: 12.5%; height: 2px; background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold)); }
+    @media (max-width: 640px) { .timeline-h { grid-template-columns: 1fr; gap: 14px; } .timeline-h::before { display: none; } }
+    .tl-h-item { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 12px; animation: fadeIn 0.5s ease both; }
+    .tl-h-item:nth-child(1) { animation-delay:.05s } .tl-h-item:nth-child(2) { animation-delay:.15s } .tl-h-item:nth-child(3) { animation-delay:.25s } .tl-h-item:nth-child(4) { animation-delay:.35s }
+    @media (max-width: 640px) { .tl-h-item { flex-direction: row; text-align: left; gap: 16px; } }
+    .tl-h-dot { width: 56px; height: 56px; border-radius: 50%; background: var(--navy); border: 3px solid var(--gold); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; margin-bottom: 14px; position: relative; z-index: 1; box-shadow: 0 4px 16px rgba(15,31,61,0.15); transition: transform 0.2s, box-shadow 0.2s; }
+    .tl-h-item:hover .tl-h-dot { transform: scale(1.08) translateY(-2px); box-shadow: 0 8px 24px rgba(200,151,58,0.25); }
+    @media (max-width: 640px) { .tl-h-dot { margin-bottom: 0; width: 46px; height: 46px; font-size: 18px; } }
+    .tl-h-body { flex: 1; }
+    .tl-h-title { font-weight: 600; font-size: 13px; color: var(--navy); margin-bottom: 4px; }
+    .tl-h-date { font-family: 'DM Serif Display', serif; font-size: 15px; color: var(--gold); margin-bottom: 5px; }
+    .tl-h-note { font-size: 11.5px; color: var(--muted); font-style: italic; line-height: 1.4; }
 
-  .kop {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 16px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid rgba(200,151,58,0.25);
-  }
-  .kop-icon {
-    width: clamp(36px, 9vw, 48px);
-    height: clamp(36px, 9vw, 48px);
-    background: var(--gold);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: clamp(16px, 4vw, 22px);
-    flex-shrink: 0;
-  }
-  .kop-text { color: var(--cream); }
-  .kop-text .dept {
-    font-size: clamp(9px, 2.2vw, 11px);
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--gold-light);
-    font-weight: 500;
-    margin-bottom: 3px;
-  }
-  .kop-text .univ {
-    font-size: clamp(11px, 2.8vw, 13px);
-    font-weight: 300;
-    opacity: 0.8;
-  }
+    /* ── INFO CARDS ── */
+    .info-cards { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; margin-bottom: 28px; }
+    @media (max-width: 560px) { .info-cards { grid-template-columns: 1fr; } }
+    .info-card { background: var(--white); border: 1px solid var(--cream-dark); border-top: 4px solid var(--navy); padding: 20px 22px; transition: box-shadow 0.2s, transform 0.2s; }
+    .info-card:hover { box-shadow: 0 6px 24px rgba(15,31,61,0.09); transform: translateY(-2px); }
+    .ic-icon { font-size: 24px; margin-bottom: 10px; }
+    .ic-title { font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 7px; }
+    .ic-content { font-size: 14px; color: var(--text); line-height: 1.6; }
+    .ic-content strong { color: var(--navy); font-weight: 600; }
 
-  .header-badge {
-    display: inline-block;
-    background: rgba(200,151,58,0.15);
-    border: 1px solid rgba(200,151,58,0.4);
-    color: var(--gold-light);
-    font-size: clamp(8px, 2vw, 10px);
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    padding: 4px 12px;
-    margin-bottom: 10px;
-    font-weight: 500;
-  }
+    /* ── ALERT ── */
+    .alert { background: #fff8ee; border: 1px solid #f0d09a; border-left: 5px solid var(--gold); padding: 18px 22px; margin-bottom: 28px; display: flex; gap: 14px; align-items: flex-start; }
+    .alert-icon { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+    .alert-body { font-size: 13.5px; color: #5a4010; line-height: 1.65; }
+    .alert-body strong { display: block; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: #8a6510; margin-bottom: 5px; }
 
-  .header h1 {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(20px, 6vw, 30px);
-    color: var(--white);
-    line-height: 1.2;
-    margin-bottom: 6px;
-  }
-  .header h1 em { font-style: italic; color: var(--gold-light); }
+    /* ── FORMAT STRIP ── */
+    .format-strip { background: var(--navy); padding: 22px 28px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    .fs-left .fs-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-light); font-weight: 600; margin-bottom: 6px; }
+    .fs-left .fs-format { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--white); }
+    .fs-right { background: rgba(200,151,58,0.15); border: 1px solid rgba(200,151,58,0.35); color: var(--gold-light); padding: 8px 18px; font-size: 14px; letter-spacing: 0.5px; white-space: nowrap; font-family: 'DM Sans', monospace; }
 
-  .header .subtitle {
-    font-size: clamp(11px, 2.6vw, 13px);
-    color: rgba(245,240,232,0.65);
-    font-weight: 300;
-    letter-spacing: 0.3px;
-    line-height: 1.4;
-  }
+    /* ══════════════════════════════════════
+       TAB 2 — BERKAS / TEMPLATE KP
+    ══════════════════════════════════════ */
+    .berkas-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+    .berkas-card {
+      background: var(--white); border: 1px solid var(--cream-dark);
+      border-top: 4px solid var(--navy);
+      padding: 22px; display: flex; flex-direction: column;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .berkas-card:hover { box-shadow: 0 6px 24px rgba(15,31,61,0.1); transform: translateY(-3px); }
+    .berkas-card-top { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 14px; }
+    .berkas-ikon { font-size: 32px; flex-shrink: 0; }
+    .berkas-meta {}
+    .berkas-kategori { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 4px; }
+    .berkas-nama { font-size: 15px; font-weight: 600; color: var(--navy); line-height: 1.3; }
+    .berkas-desc { font-size: 13px; color: var(--muted); line-height: 1.55; flex: 1; margin-bottom: 18px; }
+    .berkas-footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .berkas-tipe { background: var(--gold-dim); border: 1px solid rgba(200,151,58,0.3); color: #7a5a10; font-size: 10px; font-weight: 700; letter-spacing: 1px; padding: 3px 9px; }
+    .berkas-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--navy); color: var(--gold-light);
+      font-size: 12px; font-weight: 600; letter-spacing: 0.5px;
+      padding: 8px 16px; text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+      border: none; cursor: pointer; font-family: 'DM Sans', sans-serif;
+    }
+    .berkas-btn:hover { background: var(--gold); color: var(--navy); }
+    .berkas-btn.disabled { background: #ccc; color: #888; pointer-events: none; }
+    .berkas-note { background: var(--gold-dim); border: 1px solid rgba(200,151,58,0.2); padding: 14px 18px; font-size: 12.5px; color: #7a5a10; line-height: 1.6; margin-bottom: 24px; }
 
-  /* ── BODY ── */
-  .body {
-    padding: clamp(20px, 5vw, 36px) clamp(16px, 6vw, 48px);
-  }
+    /* ══════════════════════════════════════
+       TAB 3 — PENDAFTARAN
+    ══════════════════════════════════════ */
+    .pendaftaran-layout { display: grid; grid-template-columns: 1fr 340px; gap: 28px; align-items: start; }
+    @media (max-width: 800px) { .pendaftaran-layout { grid-template-columns: 1fr; } }
+    .steps-list { list-style: none; counter-reset: steps; }
+    .step-item { counter-increment: steps; display: flex; gap: 16px; margin-bottom: 20px; align-items: flex-start; }
+    .step-num {
+      width: 36px; height: 36px; flex-shrink: 0; border-radius: 50%;
+      background: var(--navy); color: var(--gold-light);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'DM Serif Display', serif; font-size: 16px; font-weight: 700;
+    }
+    .step-body { padding-top: 6px; }
+    .step-title { font-weight: 600; color: var(--navy); font-size: 14px; margin-bottom: 4px; }
+    .step-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .step-desc a { color: var(--gold); font-weight: 600; }
+    .step-connector { width: 2px; height: 20px; background: var(--gold-dim); margin-left: 17px; margin-top: -4px; margin-bottom: -4px; }
 
-  .section-label {
-    font-size: clamp(9px, 2vw, 10px);
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: var(--gold);
-    font-weight: 600;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, var(--cream-dark), transparent);
-  }
+    .cta-box { background: var(--navy); padding: 24px; text-align: center; margin-top: 24px; }
+    .cta-box p { font-size: 12px; color: rgba(245,240,232,0.5); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 12px; }
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--navy); font-weight: 700; font-size: 14px;
+      padding: 13px 28px; text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s; letter-spacing: 0.3px;
+    }
+    .cta-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+    .cta-sub { font-size: 11px; color: rgba(245,240,232,0.35); margin-top: 10px; }
 
-  /* ── TIMELINE ── */
-  .timeline {
-    position: relative;
-    margin-bottom: 28px;
-  }
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: clamp(16px, 4.5vw, 22px);
-    top: 8px; bottom: 8px;
-    width: 1px;
-    background: linear-gradient(180deg, var(--gold) 0%, var(--cream-dark) 100%);
-  }
+    .checklist-card { background: var(--white); border: 1px solid var(--cream-dark); border-top: 4px solid var(--green); padding: 22px; }
+    .checklist-card h3 { font-size: 13px; font-weight: 700; color: var(--navy); letter-spacing: 0.5px; margin-bottom: 16px; }
+    .checklist-items { list-style: none; }
+    .cl-item { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--cream-dark); cursor: pointer; user-select: none; }
+    .cl-item:last-child { border-bottom: none; }
+    .cl-check {
+      width: 20px; height: 20px; flex-shrink: 0; margin-top: 1px;
+      border: 2px solid var(--cream-dark); border-radius: 3px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, border-color 0.2s; font-size: 11px;
+    }
+    .cl-item.done .cl-check { background: var(--green); border-color: var(--green); color: white; }
+    .cl-item.done .cl-label { text-decoration: line-through; color: var(--muted); }
+    .cl-label { font-size: 13px; color: var(--text); line-height: 1.4; }
+    .cl-label small { display: block; font-size: 11px; color: var(--muted); margin-top: 2px; }
+    .progress-bar-wrap { margin-top: 16px; background: var(--cream-dark); height: 6px; }
+    .progress-bar { height: 100%; background: var(--green); transition: width 0.4s ease; width: 0%; }
+    .progress-label { font-size: 11px; color: var(--muted); margin-top: 6px; }
 
-  .tl-item {
-    display: flex;
-    gap: clamp(12px, 3vw, 20px);
-    margin-bottom: clamp(12px, 3vw, 20px);
-    animation: fadeUp 0.5s ease both;
-  }
-  .tl-item:nth-child(1) { animation-delay: 0.10s; }
-  .tl-item:nth-child(2) { animation-delay: 0.20s; }
-  .tl-item:nth-child(3) { animation-delay: 0.30s; }
-  .tl-item:nth-child(4) { animation-delay: 0.40s; }
+    .deadline-strip { background: #fff3e0; border: 1px solid #f0d09a; border-left: 5px solid #e65100; padding: 14px 18px; margin-top: 20px; }
+    .deadline-strip .dl-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: #b84000; font-weight: 700; margin-bottom: 4px; }
+    .deadline-strip .dl-date { font-family: 'DM Serif Display', serif; font-size: 20px; color: #b84000; }
+    .deadline-strip .dl-note { font-size: 12px; color: #7a3a00; margin-top: 4px; }
 
-  .tl-dot {
-    width: clamp(32px, 8vw, 44px);
-    height: clamp(32px, 8vw, 44px);
-    border-radius: 50%;
-    background: var(--navy);
-    border: 2px solid var(--gold);
-    display: flex; align-items: center; justify-content: center;
-    font-size: clamp(13px, 3.5vw, 18px);
-    flex-shrink: 0;
-    position: relative; z-index: 1;
-    transition: transform 0.2s ease;
-  }
-  .tl-item:hover .tl-dot { transform: scale(1.08); }
+    /* ══════════════════════════════════════
+       TAB 4 — JADWAL (ENHANCED)
+    ══════════════════════════════════════ */
+    .jadwal-controls {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 16px; flex-wrap: wrap;
+    }
+    .jadwal-search {
+      flex: 1; min-width: 200px;
+      background: var(--white); border: 1px solid var(--cream-dark);
+      padding: 9px 14px; font-family: 'DM Sans', sans-serif;
+      font-size: 13px; color: var(--text); outline: none;
+    }
+    .jadwal-search:focus { border-color: var(--gold); }
+    .jadwal-search::placeholder { color: var(--muted); }
+    .btn-refresh {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--navy); color: var(--gold-light);
+      border: none; padding: 9px 18px; font-family: 'DM Sans', sans-serif;
+      font-size: 12px; font-weight: 600; letter-spacing: 0.5px;
+      cursor: pointer; transition: background 0.2s; flex-shrink: 0;
+    }
+    .btn-refresh:hover { background: var(--navy-mid); }
+    .btn-refresh.spinning svg { animation: spin 0.8s linear infinite; }
+    .refresh-time { font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 5px; }
+    .cache-badge { font-size: 10px; padding: 2px 8px; font-weight: 600; letter-spacing: 0.5px; }
+    .cache-badge.fresh { background: var(--green-light); color: var(--green); }
+    .cache-badge.stale { background: #fff3e0; color: #b96000; }
 
-  .tl-content {
-    background: var(--cream);
-    border: 1px solid var(--cream-dark);
-    border-left: 3px solid var(--gold);
-    padding: clamp(10px, 2.5vw, 14px) clamp(12px, 3vw, 18px);
-    flex: 1;
-    transition: box-shadow 0.2s ease;
-  }
-  .tl-item:hover .tl-content { box-shadow: 0 4px 16px rgba(15,31,61,0.08); }
+    .jadwal-table-wrap { overflow-x: auto; }
+    .jadwal-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .jadwal-table thead tr { background: #2d5a1b; color: #fff; }
+    .jadwal-table thead th { padding: 11px 14px; text-align: center; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; border: 1px solid rgba(255,255,255,0.15); white-space: nowrap; }
+    .jadwal-table tbody tr:nth-child(odd) { background: rgba(255,255,255,0.55); }
+    .jadwal-table tbody tr:nth-child(even) { background: rgba(232,223,200,0.4); }
+    .jadwal-table tbody tr:hover { background: rgba(200,151,58,0.12); }
+    .jadwal-table tbody tr.hidden { display: none; }
+    .jadwal-table tbody td { padding: 9px 14px; border: 1px solid var(--cream-dark); color: var(--text); vertical-align: middle; font-size: 13px; }
+    .jadwal-table tbody td:first-child { font-weight: 600; color: var(--navy); text-align: center; white-space: nowrap; }
+    .jadwal-banner { background: #2d5a1b; color: #fff; text-align: center; font-weight: 800; font-size: clamp(14px,2.5vw,18px); letter-spacing: 1px; padding: 14px 20px; }
+    .jadwal-nb { background: #fffb00; color: #333; text-align: center; font-weight: 700; font-size: clamp(11px,2vw,13px); padding: 10px 16px; margin-bottom: 0; }
+    .no-results { text-align: center; padding: 32px; color: var(--muted); font-size: 14px; }
 
-  .tl-title {
-    font-weight: 600;
-    font-size: clamp(13px, 3vw, 14px);
-    color: var(--navy);
-    margin-bottom: 3px;
-  }
-  .tl-date {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(14px, 3.8vw, 17px);
-    color: var(--gold);
-    margin-bottom: 4px;
-  }
-  .tl-note {
-    font-size: clamp(11px, 2.5vw, 12px);
-    color: var(--muted);
-    font-style: italic;
-    line-height: 1.4;
-  }
+    .jadwal-state { text-align: center; padding: 64px 20px; }
+    .jadwal-state .js-icon { font-size: 40px; margin-bottom: 16px; }
+    .jadwal-state .js-title { font-size: 15px; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+    .jadwal-state .js-sub { font-size: 13px; color: var(--muted); line-height: 1.6; }
 
-  /* Divider */
-  .divider {
-    border: none;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--cream-dark), transparent);
-    margin: clamp(18px, 4vw, 28px) 0;
-  }
+    .spinner-wrap { display: flex; align-items: center; justify-content: center; gap: 12px; }
+    .spinner { display: inline-block; width: 22px; height: 22px; border: 2.5px solid var(--cream-dark); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.7s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
-  /* ── INFO GRID ── */
-  .info-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(10px, 2.5vw, 16px);
-    margin-bottom: clamp(18px, 4vw, 28px);
-  }
-  @media (max-width: 480px) {
-    .info-grid { grid-template-columns: 1fr; }
-  }
-
-  .info-box {
-    background: var(--cream);
-    border: 1px solid var(--cream-dark);
-    padding: clamp(12px, 3vw, 16px) clamp(12px, 3vw, 18px);
-    border-top: 3px solid var(--navy);
-    animation: fadeUp 0.5s ease 0.5s both;
-  }
-  .info-box .ib-icon { font-size: clamp(18px, 4.5vw, 22px); margin-bottom: 6px; }
-  .info-box .ib-title {
-    font-size: clamp(9px, 2vw, 10px);
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--muted);
-    font-weight: 600;
-    margin-bottom: 5px;
-  }
-  .info-box .ib-content {
-    font-size: clamp(12.5px, 2.8vw, 13.5px);
-    color: var(--text);
-    line-height: 1.55;
-  }
-  .info-box .ib-content strong { color: var(--navy); font-weight: 600; }
-
-  /* ── WARNING BOX ── */
-  .warn-box {
-    background: #fff8ee;
-    border: 1px solid #f0d09a;
-    border-left: 4px solid var(--gold);
-    padding: clamp(12px, 3vw, 16px) clamp(14px, 3.5vw, 20px);
-    margin-bottom: clamp(18px, 4vw, 22px);
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-    animation: fadeUp 0.5s ease 0.6s both;
-  }
-  .warn-icon { font-size: clamp(18px, 4.5vw, 22px); flex-shrink: 0; margin-top: 1px; }
-  .warn-text { font-size: clamp(12px, 2.8vw, 13px); color: #5a4010; line-height: 1.6; }
-  .warn-text strong {
-    color: #7a5a10;
-    display: block;
-    margin-bottom: 3px;
-    font-size: clamp(9px, 2vw, 11px);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-
-  /* ── FORMAT BERKAS ── */
-  .format-box {
-    background: var(--navy);
-    color: var(--cream);
-    padding: clamp(14px, 3.5vw, 18px) clamp(14px, 4vw, 22px);
-    margin-bottom: clamp(20px, 4vw, 28px);
-    position: relative;
-    overflow: hidden;
-    animation: fadeUp 0.5s ease 0.7s both;
-  }
-  .format-box::before {
-    content: '{ }';
-    position: absolute;
-    right: 12px; top: 50%;
-    transform: translateY(-50%);
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(28px, 8vw, 48px);
-    color: rgba(200,151,58,0.10);
-    pointer-events: none;
-  }
-  .format-box .fb-label {
-    font-size: clamp(9px, 2vw, 10px);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gold-light);
-    font-weight: 600;
-    margin-bottom: 8px;
-  }
-  .format-box .fb-format {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(16px, 4.5vw, 20px);
-    color: var(--white);
-    margin-bottom: 6px;
-  }
-  .format-box .fb-example {
-    font-size: clamp(11px, 2.5vw, 12px);
-    color: rgba(245,240,232,0.6);
-  }
-  .format-box .fb-example span {
-    background: rgba(200,151,58,0.2);
-    border: 1px solid rgba(200,151,58,0.4);
-    color: var(--gold-light);
-    padding: 3px 10px;
-    font-size: clamp(11.5px, 2.8vw, 13px);
-    letter-spacing: 0.5px;
-    word-break: break-all;
-    display: inline-block;
-    margin-top: 4px;
-  }
-
-  /* ── FOOTER ── */
-  .footer {
-    background: var(--cream);
-    border-top: 1px solid var(--cream-dark);
-    padding: clamp(14px, 3vw, 18px) clamp(16px, 6vw, 48px);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-  @media (max-width: 480px) {
-    .footer { flex-direction: column; align-items: flex-start; }
-    .footer-stamp { align-self: flex-end; }
-  }
-
-  .footer-note { font-size: clamp(11px, 2.5vw, 12px); color: var(--muted); line-height: 1.55; flex: 1; }
-  .footer-note strong { color: var(--navy); }
-  .footer-stamp {
-    background: var(--navy);
-    color: var(--gold-light);
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(10px, 2.5vw, 11px);
-    padding: 8px 14px;
-    letter-spacing: 1px;
-    text-align: center;
-    flex-shrink: 0;
-    white-space: nowrap;
-    line-height: 1.5;
-  }
-</style>
+    /* ── FOOTER ── */
+    .site-footer { background: var(--navy); padding: 16px 5vw; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    .site-footer .fn { font-size: 11.5px; color: rgba(245,240,232,0.45); }
+    .site-footer .fn strong { color: var(--gold-light); }
+    .refresh-note { font-size: 11px; color: rgba(245,240,232,0.35); }
+  </style>
 </head>
 <body>
-<div class="page">
 
-  <!-- HEADER -->
-  <div class="header">
-    <div class="kop">
-      <div class="kop-icon">🎓</div>
-      <div class="kop-text">
-        <div class="dept">Program Studi · Kerja Praktik</div>
-        <div class="univ">Koordinator Seminar Kerja Praktik</div>
+<!-- ═══════ HEADER ═══════ -->
+<header class="site-header">
+  <div class="header-top">
+    <div class="brand">
+      <div class="brand-icon">🎓</div>
+      <div class="brand-text">
+        <div class="prodi">Program Studi Statistika — UII</div>
+        <h1>Seminar <em>Kerja Praktik</em></h1>
       </div>
     </div>
-    <div class="header-badge">Pengumuman Resmi</div>
-    <h1>Seminar <em>Kerja Praktik</em></h1>
-    <div class="subtitle">Periode Mei 2026 — Informasi Jadwal &amp; Ketentuan Pendaftaran</div>
+    <div class="header-meta">
+      <div class="hbadge">Pengumuman Resmi</div>
+      <div class="period">Koordinator Seminar KP · Mei 2026</div>
+    </div>
   </div>
+  <nav class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('persyaratan',this)">
+      <span class="tab-icon">📋</span>Persyaratan & Timeline
+    </button>
+    <button class="tab-btn" onclick="switchTab('berkas',this)">
+      <span class="tab-icon">📁</span>Berkas / Template KP
+    </button>
+    <button class="tab-btn" onclick="switchTab('pendaftaran',this)">
+      <span class="tab-icon">📝</span>Pendaftaran Seminar KP
+    </button>
+    <button class="tab-btn" onclick="switchTab('jadwal',this)">
+      <span class="tab-icon">📅</span>Jadwal Seminar KP
+    </button>
+  </nav>
+</header>
 
-  <!-- BODY -->
-  <div class="body">
+<!-- ═══════ MAIN ═══════ -->
+<main class="main">
 
+  <!-- ══ TAB 1: PERSYARATAN ══ -->
+  <div id="tab-persyaratan" class="tab-panel active">
     <div class="section-label">Jadwal Pelaksanaan</div>
-    <div class="timeline">
-
-      <div class="tl-item">
-        <div class="tl-dot">📋</div>
-        <div class="tl-content">
-          <div class="tl-title">Pendaftaran</div>
-          <div class="tl-date">4 – 6 Mei 2026</div>
-          <div class="tl-note">Daftar lebih awal untuk mendapatkan tagihan pembayaran lebih cepat</div>
+    <div class="timeline-h">
+      <div class="tl-h-item">
+        <div class="tl-h-dot">📋</div>
+        <div class="tl-h-body">
+          <div class="tl-h-title">Pendaftaran</div>
+          <div class="tl-h-date">4 – 6 Mei 2026</div>
+          <div class="tl-h-note">Daftar awal untuk tagihan lebih cepat</div>
         </div>
       </div>
-
-      <div class="tl-item">
-        <div class="tl-dot">💳</div>
-        <div class="tl-content">
-          <div class="tl-title">Penagihan &amp; Pembayaran</div>
-          <div class="tl-date">5 – 7 Mei 2026</div>
-          <div class="tl-note">Selesaikan pembayaran sesuai tagihan yang diterima</div>
+      <div class="tl-h-item">
+        <div class="tl-h-dot">💳</div>
+        <div class="tl-h-body">
+          <div class="tl-h-title">Penagihan & Pembayaran</div>
+          <div class="tl-h-date">5 – 7 Mei 2026</div>
+          <div class="tl-h-note">Selesaikan sesuai tagihan yang diterima</div>
         </div>
       </div>
-
-      <div class="tl-item">
-        <div class="tl-dot">✅</div>
-        <div class="tl-content">
-          <div class="tl-title">Verifikasi</div>
-          <div class="tl-date">8 Mei 2026</div>
-          <div class="tl-note">Pengecekan kelengkapan berkas dan status pembayaran</div>
+      <div class="tl-h-item">
+        <div class="tl-h-dot">✅</div>
+        <div class="tl-h-body">
+          <div class="tl-h-title">Verifikasi</div>
+          <div class="tl-h-date">8 Mei 2026</div>
+          <div class="tl-h-note">Cek kelengkapan berkas & status pembayaran</div>
         </div>
       </div>
-
-      <div class="tl-item">
-        <div class="tl-dot">🎤</div>
-        <div class="tl-content">
-          <div class="tl-title">Pelaksanaan Seminar</div>
-          <div class="tl-date">11 – 29 Mei 2026</div>
-          <div class="tl-note">Jadwal seminar akan dikonfirmasi setelah verifikasi</div>
+      <div class="tl-h-item">
+        <div class="tl-h-dot">🎤</div>
+        <div class="tl-h-body">
+          <div class="tl-h-title">Pelaksanaan Seminar</div>
+          <div class="tl-h-date">11 – 29 Mei 2026</div>
+          <div class="tl-h-note">Jadwal dikonfirmasi setelah verifikasi</div>
         </div>
       </div>
-
     </div>
-
-    <hr class="divider">
 
     <div class="section-label">Ketentuan Pendaftaran</div>
-    <div class="info-grid">
-      <div class="info-box">
-        <div class="ib-icon">📊</div>
-        <div class="ib-title">Media Pendaftaran</div>
-        <div class="ib-content">
-          Melalui <strong>spreadsheet</strong> yang telah dibagikan. Isi <strong>semua informasi</strong> yang diperlukan secara lengkap.
+    <div class="info-cards">
+      <div class="info-card">
+        <div class="ic-icon">📊</div>
+        <div class="ic-title">Media Pendaftaran</div>
+        <div class="ic-content">
+          Melalui <strong><a href="https://docs.google.com/spreadsheets/d/1RJ8mvyjHupkNS-PEm9-pXnjtVTN35p6CBVMpGT56bCc/edit?usp=sharing" target="_blank">spreadsheet pendaftaran</a></strong> yang telah dibagikan. Isi <strong style="color:red">semua informasi</strong> yang diperlukan secara lengkap.
         </div>
       </div>
-      <div class="info-box">
-        <div class="ib-icon">⚠️</div>
-        <div class="ib-title">Syarat Dianggap Mendaftar</div>
-        <div class="ib-content">
-          Formulir diisi <strong>secara lengkap</strong>. Pengisian tidak lengkap dianggap <strong>tidak mendaftar</strong>.
+      <div class="info-card">
+        <div class="ic-icon">⚠️</div>
+        <div class="ic-title">Syarat Dianggap Mendaftar</div>
+        <div class="ic-content">
+          Formulir diisi <strong>secara lengkap</strong>. <span style="color:red">Pengisian tidak lengkap</span>, <strong><span style="color:red">dianggap tidak mendaftar.</span></strong>
         </div>
       </div>
-      <div class="info-box">
-        <div class="ib-icon">📁</div>
-        <div class="ib-title">Upload Berkas</div>
-        <div class="ib-content">
+      <div class="info-card">
+        <div class="ic-icon">📁</div>
+        <div class="ic-title">Upload Berkas</div>
+        <div class="ic-content">
           Melalui <strong>Google Classroom</strong> sesuai nama <strong>dosen pembimbing</strong> masing-masing.
         </div>
       </div>
-      <div class="info-box">
-        <div class="ib-icon">📅</div>
-        <div class="ib-title">Batas Upload Berkas</div>
-        <div class="ib-content">
-          Maksimal <strong>6 Mei 2026</strong>. Berkas yang diunggah melewati tanggal ini tidak akan diproses.
+      <div class="info-card">
+        <div class="ic-icon">📅</div>
+        <div class="ic-title">Batas Upload Berkas</div>
+        <div class="ic-content">
+          Maksimal <strong><span style="color:red">6 Mei 2026</span></strong>. Berkas yang diunggah melewati tanggal ini tidak akan diproses.
         </div>
       </div>
     </div>
 
-    <div class="warn-box">
-      <div class="warn-icon">💡</div>
-      <div class="warn-text">
+    <div class="alert">
+      <div class="alert-icon">💡</div>
+      <div class="alert-body">
         <strong>Perhatian Penting</strong>
         Pendaftaran dibuka mulai tanggal <strong>4 Mei</strong> agar mahasiswa dapat menerima tagihan pembayaran lebih awal. Pastikan mendaftar segera agar proses pembayaran tidak melewati batas waktu tanggal <strong>7 Mei 2026</strong>.
       </div>
     </div>
 
     <div class="section-label">Format Penamaan Berkas</div>
-    <div class="format-box">
-      <div class="fb-label">Ketentuan Nama File yang Diupload</div>
-      <div class="fb-format">NIM_Nama Berkas</div>
-      <div class="fb-example">
-        Contoh: <span>13611091_Laporan KP</span>
+    <div class="format-strip">
+      <div class="fs-left">
+        <div class="fs-label">Ketentuan Nama File yang Diupload</div>
+        <div class="fs-format">NIM_Nama Berkas</div>
       </div>
+      <div class="fs-right">13611091_Laporan KP</div>
     </div>
-
   </div>
 
-  <!-- FOOTER -->
-  <div class="footer">
-    <div class="footer-note">
-      Informasi lebih lanjut dapat ditanyakan kepada koordinator.<br>
-      <strong>Pastikan semua ketentuan terpenuhi sebelum batas waktu.</strong>
+  <!-- ══ TAB 2: BERKAS / TEMPLATE KP ══ -->
+  <div id="tab-berkas" class="tab-panel">
+    <div class="berkas-note">
+      ℹ️ Unduh semua template di bawah sebelum memulai proses pendaftaran seminar KP. Pastikan menggunakan versi terbaru dari setiap berkas.
     </div>
-    <div class="footer-stamp">Mei 2026<br>Seminar KP</div>
+
+    <div class="section-label">Berkas Laporan</div>
+    <div class="berkas-grid" id="berkas-laporan"></div>
+
+    <div class="section-label" style="margin-top:32px">Berkas Administrasi & Penilaian</div>
+    <div class="berkas-grid" id="berkas-admin"></div>
+
+    <div class="section-label" style="margin-top:32px">Template Presentasi</div>
+    <div class="berkas-grid" id="berkas-presentasi"></div>
   </div>
 
-</div>
+  <!-- ══ TAB 3: PENDAFTARAN ══ -->
+  <div id="tab-pendaftaran" class="tab-panel">
+    <div class="pendaftaran-layout">
+
+      <!-- Langkah-langkah -->
+      <div>
+        <div class="section-label">Alur Pendaftaran</div>
+        <ul class="steps-list">
+          <li class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-body">
+              <div class="step-title">Siapkan Semua Berkas</div>
+              <div class="step-desc">Pastikan laporan KP sudah disetujui dosen pembimbing. Siapkan semua berkas sesuai checklist di samping sebelum mendaftar.</div>
+            </div>
+          </li>
+          <div class="step-connector"></div>
+          <li class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-body">
+              <div class="step-title">Isi Spreadsheet Pendaftaran</div>
+              <div class="step-desc">Buka <a href="https://docs.google.com/spreadsheets/d/1RJ8mvyjHupkNS-PEm9-pXnjtVTN35p6CBVMpGT56bCc/edit?usp=sharing" target="_blank">spreadsheet pendaftaran</a> dan isi <strong>seluruh kolom</strong> secara lengkap dan benar. Pendaftaran tidak lengkap dianggap tidak mendaftar.</div>
+            </div>
+          </li>
+          <div class="step-connector"></div>
+          <li class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-body">
+              <div class="step-title">Upload Berkas ke Google Classroom</div>
+              <div class="step-desc">Upload semua berkas ke Google Classroom pada kelas sesuai nama <strong>dosen pembimbing</strong> Anda. Penamaan file: <code style="background:#eee;padding:1px 5px;font-size:12px">NIM_Nama Berkas</code>. Batas waktu: <strong style="color:red">6 Mei 2026</strong>.</div>
+            </div>
+          </li>
+          <div class="step-connector"></div>
+          <li class="step-item">
+            <div class="step-num">4</div>
+            <div class="step-body">
+              <div class="step-title">Selesaikan Pembayaran</div>
+              <div class="step-desc">Tagihan akan diterbitkan setelah pendaftaran. Selesaikan pembayaran paling lambat <strong style="color:red">7 Mei 2026</strong>.</div>
+            </div>
+          </li>
+          <div class="step-connector"></div>
+          <li class="step-item">
+            <div class="step-num">5</div>
+            <div class="step-body">
+              <div class="step-title">Verifikasi & Konfirmasi Jadwal</div>
+              <div class="step-desc">Prodi akan memverifikasi berkas pada 8 Mei 2026. Jadwal seminar akan dikonfirmasi melalui tab <strong>Jadwal Seminar KP</strong> di website ini.</div>
+            </div>
+          </li>
+        </ul>
+
+        <div class="cta-box">
+          <p>Buka Form Pendaftaran</p>
+          <a href="https://docs.google.com/spreadsheets/d/1RJ8mvyjHupkNS-PEm9-pXnjtVTN35p6CBVMpGT56bCc/edit?usp=sharing" target="_blank" class="cta-btn">
+            📊 Buka Spreadsheet Pendaftaran
+          </a>
+          <div class="cta-sub">Pastikan Anda login dengan akun UII sebelum mengisi</div>
+        </div>
+      </div>
+
+      <!-- Sidebar: Checklist + Deadline -->
+      <div>
+        <div class="section-label">Checklist Berkas</div>
+        <div class="checklist-card">
+          <h3>✅ KELENGKAPAN BERKAS</h3>
+          <ul class="checklist-items" id="checklist-items">
+            <li class="cl-item" onclick="toggleCheck(this)">
+              <div class="cl-check"></div>
+              <div class="cl-label">Laporan KP (sudah acc dospem)<small>Format PDF, diberi nama NIM_Laporan KP</small></div>
+            </li>
+            <li class="cl-item" onclick="toggleCheck(this)">
+              <div class="cl-check"></div>
+              <div class="cl-label">Form persetujuan dosen pembimbing<small>Ditandatangani dan di-scan</small></div>
+            </li>
+            <li class="cl-item" onclick="toggleCheck(this)">
+              <div class="cl-check"></div>
+              <div class="cl-label">Form penilaian dari instansi KP<small>Ditandatangani pembimbing lapangan</small></div>
+            </li>
+            <li class="cl-item" onclick="toggleCheck(this)">
+              <div class="cl-check"></div>
+              <div class="cl-label">Bukti telah mendaftar di spreadsheet<small>Screenshot pengisian yang lengkap</small></div>
+            </li>
+            <li class="cl-item" onclick="toggleCheck(this)">
+              <div class="cl-check"></div>
+              <div class="cl-label">Bukti pembayaran seminar KP<small>Setelah tagihan diterbitkan</small></div>
+            </li>
+            <li class="cl-item" onclick="toggleCheck(this)">
+              <div class="cl-check"></div>
+              <div class="cl-label">File presentasi (PPT)<small>Disiapkan sebelum hari seminar</small></div>
+            </li>
+          </ul>
+          <div class="progress-bar-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+          <div class="progress-label" id="progress-label">0 dari 6 berkas siap</div>
+        </div>
+
+        <div class="deadline-strip">
+          <div class="dl-label">Batas Akhir Upload Berkas</div>
+          <div class="dl-date">6 Mei 2026</div>
+          <div class="dl-note">Pukul 23.59 WIB — Berkas terlambat tidak diproses</div>
+        </div>
+
+        <div class="deadline-strip" style="margin-top:12px;border-left-color:var(--gold);background:#fffbf0;">
+          <div class="dl-label" style="color:#7a5a10">Batas Pembayaran</div>
+          <div class="dl-date" style="color:#7a5a10">7 Mei 2026</div>
+          <div class="dl-note" style="color:#7a5a10">Pembayaran setelah tanggal ini tidak diproses</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ TAB 4: JADWAL SEMINAR ══ -->
+  <div id="tab-jadwal" class="tab-panel">
+    <div class="jadwal-controls">
+      <input type="search" class="jadwal-search" id="jadwalSearch"
+        placeholder="🔍  Cari nama, tanggal, atau ruang seminar…"
+        oninput="filterJadwal(this.value)">
+      <button class="btn-refresh" id="btnRefresh" onclick="loadJadwal(true)">
+        <svg id="refreshIcon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M23 4v6h-6"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+        </svg>
+        Perbarui
+      </button>
+      <div class="refresh-time" id="refreshTime"></div>
+    </div>
+    <div id="jadwalArea"></div>
+  </div>
+
+</main>
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer class="site-footer">
+  <div class="fn">Seminar Kerja Praktik · <strong>Statistika UII · Mei 2026</strong></div>
+  <div class="refresh-note" id="footerStamp"></div>
+</footer>
+
+<script>
+/* ══════════════════════════════════════════════════════
+   CONFIG — edit bagian ini untuk update konten
+══════════════════════════════════════════════════════ */
+const CONFIG = {
+  jadwal: {
+    sheetId:    '1d16ivv6ATY56Ny-SjBjrjyXEJj37fDAuKcYv0wK05wY',
+    gid:        '1864564059',
+    pubCsvUrl:  'https://docs.google.com/spreadsheets/d/e/2PACX-1vT_tF6FZGKBgRY6AqL39tTLb1FPr2_6NQlFIpDYPJ80_EhdJMAMcPGz4vz4hwDjhibpYDobwQtX1vXp/pub?gid=1864564059&single=true&output=csv',
+    bannerRows: 1,       // baris merge/judul di atas header kolom
+    cacheTtl:   5 * 60 * 1000,
+    cacheKey:   'semkp_jadwal_v2',
+  },
+};
+
+/* Berkas/Template — tambah/hapus entri sesuai kebutuhan */
+const BERKAS = {
+  laporan: [
+    {
+      nama: 'Template Laporan KP',
+      desc: 'Template resmi penulisan laporan Kerja Praktik sesuai format Program Studi Statistika UII.',
+      ikon: '📄', kategori: 'Laporan', tipe: 'DOCX',
+      url: 'berkas/laporan/template-laporan-kp.docx',
+    },
+    {
+      nama: 'Panduan Penulisan Laporan KP',
+      desc: 'Buku panduan lengkap tata cara penulisan laporan KP beserta ketentuan format.',
+      ikon: '📖', kategori: 'Laporan', tipe: 'PDF',
+      url: 'berkas/laporan/panduan-penulisan-laporan-kp.pdf',
+    },
+  ],
+  admin: [
+    {
+      nama: 'Form Persetujuan Dosen Pembimbing',
+      desc: 'Lembar persetujuan yang harus ditandatangani dosen pembimbing sebelum mendaftar seminar.',
+      ikon: '✍️', kategori: 'Administrasi', tipe: 'PDF',
+      url: 'berkas/administrasi/form-persetujuan-dospem.pdf',
+    },
+    {
+      nama: 'Form Penilaian Dosen Penguji',
+      desc: 'Formulir penilaian seminar KP yang diisi oleh dosen penguji pada hari pelaksanaan.',
+      ikon: '📊', kategori: 'Penilaian', tipe: 'PDF',
+      url: 'berkas/administrasi/form-penilaian-penguji.pdf',
+    },
+    {
+      nama: 'Form Penilaian Instansi / Pembimbing Lapangan',
+      desc: 'Formulir penilaian dari pihak instansi tempat KP. Wajib diserahkan sebelum seminar.',
+      ikon: '🏢', kategori: 'Penilaian', tipe: 'PDF',
+      url: 'berkas/administrasi/form-penilaian-instansi.pdf',
+    },
+    {
+      nama: 'Surat Keterangan Selesai KP',
+      desc: 'Template surat keterangan yang dikeluarkan oleh instansi mitra KP.',
+      ikon: '📜', kategori: 'Administrasi', tipe: 'DOCX',
+      url: 'berkas/administrasi/surat-keterangan-selesai-kp.docx',
+    },
+  ],
+  presentasi: [
+    {
+      nama: 'Template Presentasi Seminar KP',
+      desc: 'Template PowerPoint resmi untuk presentasi seminar KP berlogo UII dan Program Studi.',
+      ikon: '🖥️', kategori: 'Presentasi', tipe: 'PPTX',
+      url: 'berkas/presentasi/template-presentasi-seminar-kp.pptx',
+    },
+  ],
+};
+
+/* ══════════════════════════════════════════════════════
+   TAB SWITCHING
+══════════════════════════════════════════════════════ */
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+  if (id === 'jadwal') loadJadwal(false);
+}
+
+/* ══════════════════════════════════════════════════════
+   TAB 2: RENDER BERKAS
+══════════════════════════════════════════════════════ */
+function renderBerkas() {
+  renderBerkasGroup('berkas-laporan',     BERKAS.laporan);
+  renderBerkasGroup('berkas-admin',       BERKAS.admin);
+  renderBerkasGroup('berkas-presentasi',  BERKAS.presentasi);
+}
+
+function renderBerkasGroup(containerId, items) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML = items.map(f => {
+    const isReady = f.url && f.url !== '#';
+    return `
+    <div class="berkas-card">
+      <div class="berkas-card-top">
+        <div class="berkas-ikon">${f.ikon}</div>
+        <div class="berkas-meta">
+          <div class="berkas-kategori">${f.kategori}</div>
+          <div class="berkas-nama">${f.nama}</div>
+        </div>
+      </div>
+      <div class="berkas-desc">${f.desc}</div>
+      <div class="berkas-footer">
+        <span class="berkas-tipe">${f.tipe}</span>
+        ${isReady
+          ? `<a href="${f.url}" target="_blank" class="berkas-btn">⬇ Unduh</a>`
+          : `<button class="berkas-btn disabled">⏳ Segera</button>`}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+/* ══════════════════════════════════════════════════════
+   TAB 3: CHECKLIST
+══════════════════════════════════════════════════════ */
+function toggleCheck(el) {
+  el.classList.toggle('done');
+  if (el.classList.contains('done')) el.querySelector('.cl-check').textContent = '✓';
+  else el.querySelector('.cl-check').textContent = '';
+  updateProgress();
+}
+
+function updateProgress() {
+  const all  = document.querySelectorAll('.cl-item').length;
+  const done = document.querySelectorAll('.cl-item.done').length;
+  const pct  = all ? Math.round(done / all * 100) : 0;
+  document.getElementById('progress-bar').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = `${done} dari ${all} berkas siap`;
+}
+
+/* ══════════════════════════════════════════════════════
+   TAB 4: JADWAL — Data Layer
+   Strategi: localStorage cache + parallel race fetch
+══════════════════════════════════════════════════════ */
+let _lastData = null; // rows yang sedang ditampilkan, untuk filter
+
+async function loadJadwal(forceRefresh = false) {
+  const { sheetId, gid, pubCsvUrl, bannerRows, cacheTtl, cacheKey } = CONFIG.jadwal;
+  const area = document.getElementById('jadwalArea');
+
+  // 1. Coba tampilkan dari cache dulu (stale-while-revalidate)
+  const cached = readCache(cacheKey);
+  if (cached && !forceRefresh) {
+    renderJadwalTable(cached.data, area, bannerRows);
+    updateStamp(cached.ts, false);
+    // Refresh di background jika cache sudah stale
+    const age = Date.now() - cached.ts;
+    if (age > cacheTtl) fetchAndRender(sheetId, gid, pubCsvUrl, bannerRows, cacheKey, area, true);
+    return;
+  }
+
+  // 2. Tidak ada cache — tampilkan loading
+  showLoading(area);
+  setRefreshSpinning(true);
+  await fetchAndRender(sheetId, gid, pubCsvUrl, bannerRows, cacheKey, area, false);
+}
+
+async function fetchAndRender(sheetId, gid, pubCsvUrl, bannerRows, cacheKey, area, isBackground) {
+  if (!isBackground) setRefreshSpinning(true);
+
+  const result = await fetchData(sheetId, gid, pubCsvUrl);
+
+  setRefreshSpinning(false);
+  if (!result) {
+    if (!isBackground) showError(area);
+    return;
+  }
+
+  writeCache(cacheKey, result);
+  renderJadwalTable(result, area, bannerRows);
+  updateStamp(Date.now(), true);
+}
+
+/* ─ Fetch Strategy (urutan prioritas):
+   0. Direct CSV dari URL publish Google (paling andal, Google sudah set CORS *)
+   A. Google Viz API pakai sheet ID biasa (butuh sheet di-share publik)
+   B. Race parallel CORS proxies sebagai last resort
+─ */
+async function fetchData(sheetId, gid, pubCsvUrl) {
+
+  // ── Method 0: Direct fetch published CSV ──────────────────────────────
+  // Google menyertakan header Access-Control-Allow-Origin: * untuk URL publish,
+  // jadi tidak perlu proxy sama sekali. Ini cara paling cepat & andal.
+  if (pubCsvUrl) {
+    try {
+      const res = await fetch(pubCsvUrl, { signal: AbortSignal.timeout(8000) });
+      if (res.ok) {
+        const text = await res.text();
+        if (text && !text.trim().startsWith('<') && text.trim().length > 10) {
+          return { type: 'csv-direct', rows: parseCSV(text) };
+        }
+      }
+    } catch (_) { /* lanjut ke fallback */ }
+  }
+
+  // ── Method A: Google Visualization JSON API ───────────────────────────
+  // Bekerja jika sheet di-share "Anyone with the link can view".
+  // Tidak butuh proxy, Google izinkan cross-origin untuk sheet publik.
+  try {
+    const gvizUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&gid=${gid}`;
+    const res = await fetch(gvizUrl, { signal: AbortSignal.timeout(8000) });
+    if (res.ok) {
+      const text = await res.text();
+      const parsed = parseGviz(text);
+      if (parsed && parsed.length > 0) return { type: 'gviz', rows: parsed };
+    }
+  } catch (_) { /* lanjut ke fallback */ }
+
+  // ── Method B: Race parallel CORS proxies ─────────────────────────────
+  // Semua proxy dijalankan bersamaan (Promise.any), yang duluan menang.
+  // Fallback terakhir jika kedua method di atas gagal.
+  const PROXIES = [
+    u => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
+    u => `https://corsproxy.io/?${encodeURIComponent(u)}`,
+    u => `https://thingproxy.freeboard.io/fetch/${u}`,
+  ];
+
+  const csvUrl = pubCsvUrl || buildCsvUrl(sheetId, gid);
+  const attempts = PROXIES.map(mkProxy => fetchCsvViaProxy(mkProxy(csvUrl)));
+  try {
+    const csv = await Promise.any(attempts);
+    if (csv) return { type: 'csv-proxy', rows: parseCSV(csv) };
+  } catch (_) { /* semua gagal */ }
+
+  return null;
+}
+
+async function fetchCsvViaProxy(url) {
+  const res = await fetch(url, { signal: AbortSignal.timeout(9000) });
+  if (!res.ok) throw new Error('not ok');
+  const text = await res.text();
+  if (!text || text.trim().startsWith('<') || text.trim().length < 5) throw new Error('bad response');
+  return text;
+}
+
+/* ─ Gviz JSON parser ─ */
+function parseGviz(text) {
+  // Response: /*O_o*/\ngoogle.visualization.Query.setResponse({...});
+  const jsonStr = text.replace(/^[^(]+\(/, '').replace(/\);?\s*$/, '');
+  let json;
+  try { json = JSON.parse(jsonStr); } catch { return null; }
+  const table = json?.table;
+  if (!table) return null;
+
+  const headers = table.cols.map(c => c.label || c.id || '');
+  const rows = table.rows.map(r =>
+    (r.c || []).map(cell => {
+      if (!cell) return '';
+      return cell.f != null ? cell.f : (cell.v != null ? String(cell.v) : '');
+    })
+  );
+  return [headers, ...rows];
+}
+
+/* ─ CSV parser ─ */
+function parseCSV(text) {
+  const rows = [];
+  for (const line of text.split(/\r?\n/)) {
+    if (!line.trim()) continue;
+    const fields = []; let cur = '', inQ = false;
+    for (const ch of line) {
+      if (ch === '"')             { inQ = !inQ; }
+      else if (ch === ',' && !inQ){ fields.push(cur); cur = ''; }
+      else                        { cur += ch; }
+    }
+    fields.push(cur);
+    rows.push(fields.map(f => f.trim()));
+  }
+  return rows;
+}
+
+function buildCsvUrl(sheetId, gid) {
+  return `https://docs.google.com/spreadsheets/d/${sheetId}/pub?gid=${gid}&single=true&output=csv`;
+}
+
+/* ── localStorage cache ── */
+function readCache(key) {
+  try {
+    const raw = localStorage.getItem(key);
+    if (!raw) return null;
+    const obj = JSON.parse(raw);
+    return obj?.data ? obj : null;
+  } catch { return null; }
+}
+
+function writeCache(key, data) {
+  try { localStorage.setItem(key, JSON.stringify({ ts: Date.now(), data })); } catch(_) {}
+}
+
+/* ══════════════════════════════════════════════════════
+   TAB 4: JADWAL — Render
+══════════════════════════════════════════════════════ */
+function renderJadwalTable(result, area, bannerRows) {
+  const allRows = result.rows || [];
+  const nonEmpty = allRows.filter(r => r.some(c => c));
+  if (nonEmpty.length < 2) { showEmpty(area); return; }
+
+  // Banner rows (baris merge judul)
+  let bannerHtml = '';
+  for (let i = 0; i < bannerRows; i++) {
+    const txt = (nonEmpty[i] || []).find(c => c) || '';
+    if (txt) bannerHtml += `<div class="jadwal-banner">${esc(txt)}</div>`;
+  }
+
+  // Jika data dari gviz: baris 0 = header (dari parseGviz), bannerRows sudah disertakan dalam rows
+  // Jika data dari csv: baris bannerRows = header
+  const headerRow = nonEmpty[bannerRows] || nonEmpty[0];
+  const dataRows  = nonEmpty.slice(bannerRows + 1);
+  const colCount  = headerRow.length;
+
+  _lastData = { bannerHtml, headerRow, dataRows, colCount };
+
+  let html = bannerHtml;
+  html += `<div class="jadwal-table-wrap"><table class="jadwal-table" id="jadwalTable">`;
+  html += `<thead><tr>`;
+  headerRow.forEach(h => { html += `<th>${esc(h) || '&nbsp;'}</th>`; });
+  html += `</tr></thead><tbody>`;
+  dataRows.forEach((row, i) => {
+    const padded = [...row];
+    while (padded.length < colCount) padded.push('');
+    html += `<tr data-idx="${i}">`;
+    padded.forEach(cell => {
+      html += `<td>${esc(cell) || '<span style="color:#ccc">—</span>'}</td>`;
+    });
+    html += `</tr>`;
+  });
+  html += `</tbody></table></div>`;
+  area.innerHTML = html;
+
+  // Reapply search filter jika ada keyword aktif
+  const kw = document.getElementById('jadwalSearch')?.value || '';
+  if (kw.trim()) filterJadwal(kw);
+}
+
+/* ─ Search/Filter ─ */
+function filterJadwal(keyword) {
+  const table = document.getElementById('jadwalTable');
+  if (!table) return;
+  const kw = keyword.trim().toLowerCase();
+  const rows = table.querySelectorAll('tbody tr');
+  let visible = 0;
+
+  rows.forEach(row => {
+    const text = row.textContent.toLowerCase();
+    const match = !kw || text.includes(kw);
+    row.classList.toggle('hidden', !match);
+    if (match) visible++;
+  });
+
+  // Pesan "tidak ditemukan"
+  let noRes = table.parentElement.querySelector('.no-results');
+  if (visible === 0 && kw) {
+    if (!noRes) {
+      noRes = document.createElement('div');
+      noRes.className = 'no-results';
+      table.parentElement.appendChild(noRes);
+    }
+    noRes.textContent = `Tidak ditemukan hasil untuk "${keyword}"`;
+  } else if (noRes) {
+    noRes.remove();
+  }
+}
+
+/* ─ UI States ─ */
+function showLoading(area) {
+  area.innerHTML = `<div class="jadwal-state">
+    <div class="spinner-wrap"><span class="spinner"></span><span style="color:var(--muted);font-size:14px">Memuat data jadwal…</span></div>
+  </div>`;
+}
+function showError(area) {
+  area.innerHTML = `<div class="jadwal-state">
+    <div class="js-icon">⚠️</div>
+    <div class="js-title">Gagal Memuat Data</div>
+    <div class="js-sub">Pastikan spreadsheet sudah di-<em>publish ke web</em> (File → Share → Publish to web).<br>
+    Coba <button onclick="loadJadwal(true)" style="background:none;border:none;color:var(--gold);cursor:pointer;font-weight:700;font-size:13px">perbarui ulang</button> atau periksa koneksi internet.</div>
+  </div>`;
+}
+function showEmpty(area) {
+  area.innerHTML = `<div class="jadwal-state">
+    <div class="js-icon">📭</div>
+    <div class="js-title">Data Belum Tersedia</div>
+    <div class="js-sub">Jadwal seminar akan ditampilkan setelah proses verifikasi selesai (8 Mei 2026).</div>
+  </div>`;
+}
+
+/* ─ Refresh spinner & timestamp ─ */
+function setRefreshSpinning(on) {
+  const btn = document.getElementById('btnRefresh');
+  if (on) btn.classList.add('spinning'); else btn.classList.remove('spinning');
+  btn.disabled = on;
+}
+
+function updateStamp(ts, isFresh) {
+  const t = new Date(ts).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  const badge = `<span class="cache-badge ${isFresh ? 'fresh' : 'stale'}">${isFresh ? '● Live' : '○ Cache'}</span>`;
+  const rtEl = document.getElementById('refreshTime');
+  if (rtEl) rtEl.innerHTML = `${badge} Diperbarui ${t}`;
+  const fs = document.getElementById('footerStamp');
+  if (fs) fs.textContent = 'Data per ' + new Date(ts).toLocaleString('id-ID');
+}
+
+function esc(s) {
+  return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+/* ══════════════════════════════════════════════════════
+   INIT
+══════════════════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+  renderBerkas();
+
+  // Auto-refresh jadwal tiap 5 menit (saat tab jadwal aktif)
+  setInterval(() => {
+    if (document.getElementById('tab-jadwal').classList.contains('active')) {
+      loadJadwal(false); // pakai cache jika masih fresh
+    }
+  }, 5 * 60 * 1000);
+});
+</script>
 </body>
 </html>
