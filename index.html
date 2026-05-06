@@ -231,14 +231,14 @@
     .cache-badge.stale { background: #fff3e0; color: #b96000; }
 
     .jadwal-table-wrap { overflow-x: auto; }
-    .jadwal-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .jadwal-table { width: auto; min-width: 100%; border-collapse: collapse; font-size: 13px; table-layout: auto; }
     .jadwal-table thead tr { background: #2d5a1b; color: #fff; }
-    .jadwal-table thead th { padding: 11px 14px; text-align: center; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; border: 1px solid rgba(255,255,255,0.15); white-space: nowrap; }
+    .jadwal-table thead th { padding: 11px 20px; text-align: center; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; border: 1px solid rgba(255,255,255,0.15); white-space: nowrap; width: 1%; }
     .jadwal-table tbody tr:nth-child(odd) { background: rgba(255,255,255,0.55); }
     .jadwal-table tbody tr:nth-child(even) { background: rgba(232,223,200,0.4); }
     .jadwal-table tbody tr:hover { background: rgba(200,151,58,0.12); }
     .jadwal-table tbody tr.hidden { display: none; }
-    .jadwal-table tbody td { padding: 9px 14px; border: 1px solid var(--cream-dark); color: var(--text); vertical-align: middle; font-size: 13px; }
+    .jadwal-table tbody td { padding: 9px 20px; border: 1px solid var(--cream-dark); color: var(--text); vertical-align: middle; font-size: 13px; white-space: nowrap; width: 1%; }
     .jadwal-table tbody td:first-child { font-weight: 600; color: var(--navy); text-align: center; white-space: nowrap; }
     .jadwal-banner { background: #2d5a1b; color: #fff; text-align: center; font-weight: 800; font-size: clamp(14px,2.5vw,18px); letter-spacing: 1px; padding: 14px 20px; }
     .jadwal-nb { background: #fffb00; color: #333; text-align: center; font-weight: 700; font-size: clamp(11px,2vw,13px); padding: 10px 16px; margin-bottom: 0; }
@@ -328,7 +328,7 @@
         <div class="tl-h-dot">🎤</div>
         <div class="tl-h-body">
           <div class="tl-h-title">Pelaksanaan Seminar</div>
-          <div class="tl-h-date">20 - 25 Mei 2026</div>
+          <div class="tl-h-date">11 - 25 Mei 2026</div>
           <div class="tl-h-note">Jadwal dikonfirmasi setelah verifikasi</div>
         </div>
       </div>
@@ -571,25 +571,25 @@ const BERKAS = {
       nama: 'Form Persetujuan Dosen Pembimbing',
       desc: 'Lembar persetujuan yang harus ditandatangani dosen pembimbing sebelum mendaftar seminar.',
       ikon: '✍️', kategori: 'Administrasi', tipe: 'PDF',
-      url: 'berkas/administrasi/form-persetujuan-dospem.pdf',
+      url: '#',
     },
     {
       nama: 'Form Penilaian Dosen Penguji',
       desc: 'Formulir penilaian seminar KP yang diisi oleh dosen penguji pada hari pelaksanaan.',
       ikon: '📊', kategori: 'Penilaian', tipe: 'PDF',
-      url: 'berkas/administrasi/form-penilaian-penguji.pdf',
+      url: '#',
     },
     {
       nama: 'Form Penilaian Instansi / Pembimbing Lapangan',
       desc: 'Formulir penilaian dari pihak instansi tempat KP. Wajib diserahkan sebelum seminar.',
       ikon: '🏢', kategori: 'Penilaian', tipe: 'PDF',
-      url: 'berkas/administrasi/form-penilaian-instansi.pdf',
+      url: '#',
     },
     {
       nama: 'Surat Keterangan Selesai KP',
       desc: 'Template surat keterangan yang dikeluarkan oleh instansi mitra KP.',
       ikon: '📜', kategori: 'Administrasi', tipe: 'DOCX',
-      url: 'berkas/administrasi/surat-keterangan-selesai-kp.docx',
+      url: '#',
     },
   ],
   presentasi: [
@@ -597,7 +597,7 @@ const BERKAS = {
       nama: 'Template Presentasi Seminar KP',
       desc: 'Template PowerPoint resmi untuk presentasi seminar KP berlogo UII dan Program Studi.',
       ikon: '🖥️', kategori: 'Presentasi', tipe: 'PPTX',
-      url: 'berkas/presentasi/template-presentasi-seminar-kp.pptx',
+      url: '#',
     },
   ],
 };
@@ -708,31 +708,9 @@ async function fetchAndRender(sheetId, gid, pubCsvUrl, bannerRows, cacheKey, are
   updateStamp(Date.now(), true);
 }
 
-/* ─ Fetch Strategy (urutan prioritas):
-   0. Direct CSV dari URL publish Google (paling andal, Google sudah set CORS *)
-   A. Google Viz API pakai sheet ID biasa (butuh sheet di-share publik)
-   B. Race parallel CORS proxies sebagai last resort
-─ */
+/* ─ Fetch Strategy: Gviz API (no proxy) → parallel CSV proxies ─ */
 async function fetchData(sheetId, gid, pubCsvUrl) {
-
-  // ── Method 0: Direct fetch published CSV ──────────────────────────────
-  // Google menyertakan header Access-Control-Allow-Origin: * untuk URL publish,
-  // jadi tidak perlu proxy sama sekali. Ini cara paling cepat & andal.
-  if (pubCsvUrl) {
-    try {
-      const res = await fetch(pubCsvUrl, { signal: AbortSignal.timeout(8000) });
-      if (res.ok) {
-        const text = await res.text();
-        if (text && !text.trim().startsWith('<') && text.trim().length > 10) {
-          return { type: 'csv-direct', rows: parseCSV(text) };
-        }
-      }
-    } catch (_) { /* lanjut ke fallback */ }
-  }
-
-  // ── Method A: Google Visualization JSON API ───────────────────────────
-  // Bekerja jika sheet di-share "Anyone with the link can view".
-  // Tidak butuh proxy, Google izinkan cross-origin untuk sheet publik.
+  // Method A: Google Visualization JSON API — fastest, no CORS proxy
   try {
     const gvizUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&gid=${gid}`;
     const res = await fetch(gvizUrl, { signal: AbortSignal.timeout(8000) });
@@ -741,11 +719,9 @@ async function fetchData(sheetId, gid, pubCsvUrl) {
       const parsed = parseGviz(text);
       if (parsed && parsed.length > 0) return { type: 'gviz', rows: parsed };
     }
-  } catch (_) { /* lanjut ke fallback */ }
+  } catch (_) { /* continue to fallback */ }
 
-  // ── Method B: Race parallel CORS proxies ─────────────────────────────
-  // Semua proxy dijalankan bersamaan (Promise.any), yang duluan menang.
-  // Fallback terakhir jika kedua method di atas gagal.
+  // Method B: Race parallel CSV proxies — semua dijalankan bersamaan
   const PROXIES = [
     u => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
     u => `https://corsproxy.io/?${encodeURIComponent(u)}`,
@@ -754,10 +730,11 @@ async function fetchData(sheetId, gid, pubCsvUrl) {
 
   const csvUrl = pubCsvUrl || buildCsvUrl(sheetId, gid);
   const attempts = PROXIES.map(mkProxy => fetchCsvViaProxy(mkProxy(csvUrl)));
+
   try {
     const csv = await Promise.any(attempts);
-    if (csv) return { type: 'csv-proxy', rows: parseCSV(csv) };
-  } catch (_) { /* semua gagal */ }
+    if (csv) return { type: 'csv', rows: parseCSV(csv) };
+  } catch (_) { /* all failed */ }
 
   return null;
 }
