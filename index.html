@@ -231,7 +231,8 @@
     .cache-badge.stale { background: #fff3e0; color: #b96000; }
 
     .jadwal-table-wrap { overflow-x: auto; }
-    .jadwal-table { width: auto; border-collapse: collapse; font-size: 13px; table-layout: auto; }
+    .jadwal-inner { width: fit-content; min-width: 100%; }
+    .jadwal-table { width: 100%; border-collapse: collapse; font-size: 13px; table-layout: auto; }
     .jadwal-table thead tr { background: #2d5a1b; color: #fff; }
     .jadwal-table thead th { padding: 11px 5px; text-align: center; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; border: 1px solid rgba(255,255,255,0.15); white-space: nowrap; }
     .jadwal-table tbody tr:nth-child(odd) { background: rgba(255,255,255,0.55); }
@@ -287,9 +288,9 @@
     <button class="tab-btn" onclick="switchTab('pendaftaran',this)">
       <span class="tab-icon">📝</span>Pendaftaran Seminar KP
     </button>
-    <button class="tab-btn" onclick="switchTab('jadwal',this)">
+    <!-- <button class="tab-btn" onclick="switchTab('jadwal',this)">
       <span class="tab-icon">📅</span>Jadwal Seminar KP
-    </button>
+    </button> -->
   </nav>
 </header>
 
@@ -824,8 +825,7 @@ function renderJadwalTable(result, area, bannerRows) {
 
   _lastData = { bannerHtml, headerRow, dataRows, colCount };
 
-  let html = bannerHtml;
-  html += `<div class="jadwal-table-wrap"><table class="jadwal-table" id="jadwalTable">`;
+  let html = `<div class="jadwal-table-wrap"><div class="jadwal-inner">${bannerHtml}<table class="jadwal-table" id="jadwalTable">`;
   html += `<thead><tr>`;
   headerRow.forEach(h => { html += `<th>${esc(h) || '&nbsp;'}</th>`; });
   html += `</tr></thead><tbody>`;
@@ -838,7 +838,7 @@ function renderJadwalTable(result, area, bannerRows) {
     });
     html += `</tr>`;
   });
-  html += `</tbody></table></div>`;
+  html += `</tbody></table></div></div>`;
   area.innerHTML = html;
 
   // Reapply search filter jika ada keyword aktif
